@@ -6,9 +6,10 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        JFrame window = new JFrame("My 2D Game");
+        JFrame window = new JFrame("Cosmic Revival");
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setResizable(false);
+
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
@@ -17,6 +18,8 @@ public class Main {
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+
+        gamePanel.setupGame();
 
         gamePanel.startGameThread();
 
