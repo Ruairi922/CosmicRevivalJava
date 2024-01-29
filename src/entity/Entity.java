@@ -140,18 +140,20 @@ public class Entity {
         }
     }
 
-    public BufferedImage setup(String imagePath){
+    public BufferedImage setup(String imagePath) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
-        try{
-            image = ImageIO.read(getClass().getResourceAsStream(imagePath+".png"));
+        try {
+            String fullImagePath = imagePath + ".png";
+            System.out.println("Attempting to load image: " + fullImagePath);
+
+            image = ImageIO.read(getClass().getResourceAsStream(fullImagePath));
             image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return image;
-
     }
 
 

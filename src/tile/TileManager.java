@@ -28,30 +28,35 @@ public class TileManager {
     public void getTileImage(){
         setup(0,"ship_floor", false);
         setup(1,"wall", true);
-        setup(2,"water01", true);
-        setup(3,"earth", false);
+        //setup(2,"water01", true);
+        //setup(3,"earth", false);
         setup(4,"stars", true);
-        setup(5,"road", false);
-        setup(6,"cabin", false);
-        setup(7,"concrete_path", false);
+        //setup(5,"road", false);
+        //setup(6,"cabin", false);
+        //setup(7,"concrete_path", false);
         setup(8,"ship_wall", true);
         setup(9,"planet1", false);
         setup(10,"comet", false);
         setup(11, "planet2", false);
     }
 
-    public void setup(int index, String imageName, boolean collision){
+    public void setup(int index, String imageName, boolean collision) {
         UtilityTool uTool = new UtilityTool();
 
-        try{
+        try {
             tile[index] = new Tile();
-            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" +imageName + ".png"));
+            InputStream imageStream = getClass().getResourceAsStream("/tiles/" + imageName + ".png");
+
+            if (imageStream == null) {
+                throw new IOException("Failed to load image: " + imageName);
+            }
+
+            tile[index].image = ImageIO.read(imageStream);
             tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void loadMap(String filePath){
