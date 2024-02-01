@@ -1,5 +1,6 @@
 package main;
 
+import alien.Alien;
 import entity.NPC_ARIA;
 import object.*;
 
@@ -67,5 +68,14 @@ public class AssetSetter {
         gp.npc[0] =  new NPC_ARIA(gp);
         gp.npc[0].worldX = gp.tileSize*12;
         gp.npc[0].worldY = gp.tileSize*42;
+    }
+    public void setAlien(){
+        gp.alien[0] = new Alien(gp);
+        gp.alien[0].worldX = gp.tileSize*31;
+        gp.alien[0].worldY = gp.tileSize*40;
+
+        gp.alien[1] = new Alien(gp);
+        gp.alien[1].worldX = gp.tileSize*31;
+        gp.alien[1].worldY = gp.tileSize*41;
     }
 }
