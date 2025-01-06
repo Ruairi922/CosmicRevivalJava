@@ -36,7 +36,7 @@ This will start the game, and you can begin playing immediately after the main w
 * Interact: Press Enter to interact with objects and NPCs.
 * Pause Game: Press P to pause and resume the game.
 * Access Character Stats: Press C to view character statistics and inventory.
-* 
+  
 
 # License
 Distributed under the Apache License 2.0. See LICENSE for more information.
