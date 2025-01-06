@@ -1,19 +1,13 @@
 package object;
 
+import entity.Entity;
 import main.GamePanel;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
+public class OBJ_PhotonMatrix extends Entity {
 
-public class OBJ_PhotonMatrix extends SuperObject{
-    GamePanel gp;
     public OBJ_PhotonMatrix(GamePanel gp){
+        super(gp);
         name = "Photon Matrix";
-        try{
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/photon_matrix.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        down1 = setup("/objects/photon_matrix", gp.tileSize, gp.tileSize);
     }
 }

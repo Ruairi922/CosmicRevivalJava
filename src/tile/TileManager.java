@@ -18,7 +18,7 @@ public class TileManager {
     public TileManager(GamePanel gp){
         this.gp = gp;
 
-        tile = new Tile[15];
+        tile = new Tile[25];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
@@ -38,6 +38,20 @@ public class TileManager {
         setup(9,"planet1", false);
         setup(10,"comet", false);
         setup(11, "planet2", false);
+        setup(12, "control_panel_front", true);
+        setup(13, "chair_left", true);
+        setup(14, "chair_right", true);
+        setup(15, "bed_front", true);
+        setup(16, "control_panel_left", true);
+        setup(17, "control_panel_right", true);
+        setup(18, "bedHosp", true);
+        setup(19, "desk", true);
+        setup(20, "sink", true);
+        setup(21, "hospwall1", true);
+        setup(22, "hospwall2", true);
+        setup(23, "hospfloor", false);
+        setup(24, "planet3", false);
+
     }
 
     public void setup(int index, String imageName, boolean collision) {

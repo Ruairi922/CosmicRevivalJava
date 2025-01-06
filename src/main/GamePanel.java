@@ -2,12 +2,15 @@ package main;
 
 import entity.Entity;
 import entity.Player;
-import object.SuperObject;
+import environment.EnvironmentManager;
 import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -41,18 +44,39 @@ public class GamePanel extends JPanel implements Runnable{
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
+    public EventHandler eHandler = new EventHandler(this);
     Thread gameThread;
-
+    EnvironmentManager eManager = new EnvironmentManager(this);
 
     public Player player = new Player(this, this.keyH);
-    public SuperObject obj[] = new SuperObject[15];
+    public Entity obj[] = new Entity[15];
     public Entity npc[] = new Entity[10];
+    public Entity alien[] = new Entity[11];
+
+    public Entity crewmate[] = new Entity[1];
+    ArrayList<Entity> entityList = new ArrayList<>();
 
     // Game State
     public int gameState;
+    public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueSate = 3;
+    public final int characterState = 4;
+    public final int gameOverState = 5;
+    public final int controlsState = 6;
+
+    public final int winState = 7;
+
+    public final int amountAliens = alien.length;
+    public int amountAliensChange = alien.length;
+
+    public final int amountCrewmates = crewmate.length;
+    public int amountCrewmatesChange = crewmate.length;
+
+
+
+
 
     public GamePanel() throws IOException {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -65,8 +89,36 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame(){
         aSetter.setObject();
         aSetter.setNPC();
+        aSetter.setAlien();
+        aSetter.setCrewmate();
+        eManager.setup();
         playMusic(0);
-        gameState = playState;
+        gameState = titleState;
+    }
+
+    public void retry(){
+        player.setDefaultValues();
+        player.setDefaultPositions();
+        player.restoreLife();
+        aSetter.setObject();
+        aSetter.setNPC();
+        aSetter.setAlien();
+        aSetter.setCrewmate();
+        amountAliensChange = alien.length;
+        player.hasEngineParts = 0;
+    }
+
+    public void restart(){
+        player.setDefaultValues();
+        player.setDefaultPositions();
+        player.restoreLife();
+        aSetter.setObject();
+        aSetter.setNPC();
+        aSetter.setAlien();
+        aSetter.setCrewmate();
+        amountAliensChange = alien.length;
+        player.hasEngineParts = 0;
+
     }
 
     public void startGameThread(){
@@ -126,6 +178,24 @@ public class GamePanel extends JPanel implements Runnable{
                     npc[i].update();
                 }
             }
+
+            for(int i = 0; i<crewmate.length;i++){
+                if(crewmate[i] != null){
+                    crewmate[i].update();
+                }
+            }
+
+            for(int i = 0; i<alien.length;i++){
+                if(alien[i] != null){
+                    if(alien[i].alive == true && alien[i].dying == false){
+                        alien[i].update();
+                    }
+                    if(alien[i].alive == false){
+                        alien[i] = null;
+                    }
+
+                }
+            }
         }
         if(gameState == pauseState){
 
@@ -145,31 +215,67 @@ public class GamePanel extends JPanel implements Runnable{
             drawStart = System.nanoTime();
         }
 
-
-
-        // tile
-        tileM.draw(g2);
-
-        //Object
-        for(int i = 0; i < obj.length; i++){
-            if(obj[i] != null){
-                obj[i].draw(g2, this);
-            }
+        //Title screen
+        if(gameState == titleState){
+            ui.draw(g2);
         }
 
-        //npc
-        for(int i = 0; i<npc.length;i++){
-            if(npc[i] != null){
-                npc[i].draw(g2);
+        //Others
+        else{
+            // tile
+            tileM.draw(g2);
+
+            //ADD ENTITIES TO LIST
+            entityList.add(player);
+            for(int i = 0; i < npc.length; i++){
+                if(npc[i] != null){
+                    entityList.add(npc[i]);
+                }
             }
+
+            for(int i = 0; i < obj.length; i++){
+                if(obj[i] != null){
+                    entityList.add(obj[i]);
+                }
+            }
+            for(int i = 0; i < alien.length; i++){
+                if(alien[i] != null){
+                    entityList.add(alien[i]);
+                }
+            }
+
+            for(int i = 0; i < crewmate.length; i++){
+                if(crewmate[i] != null){
+                    entityList.add(crewmate[i]);
+                }
+            }
+
+
+
+            //SORT
+            Collections.sort(entityList, new Comparator<Entity>() {
+                @Override
+                public int compare(Entity e1, Entity e2) {
+                    int result = Integer.compare(e1.worldY, e2.worldY);
+                    return result;
+                }
+            });
+
+            //Draw entities
+            for(int i = 0; i < entityList.size(); i++){
+                entityList.get(i).draw(g2);
+            }
+            //empty entity list
+            entityList.clear();
+
+            eManager.draw(g2);
+
+            // UI
+            ui.draw(g2);
+            g2.dispose();
         }
 
-        //player
-        player.draw(g2);
 
-        // UI
-        ui.draw(g2);
-        g2.dispose();
 
         if(keyH.checkDrawTime == true){
             long drawEnd = System.nanoTime();

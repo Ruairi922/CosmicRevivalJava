@@ -1,19 +1,15 @@
 package object;
 
+import entity.Entity;
 import main.GamePanel;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
+public class OBJ_WarpCoreRegulator extends Entity {
 
-public class OBJ_WarpCoreRegulator extends SuperObject{
-    GamePanel gp;
     public OBJ_WarpCoreRegulator(GamePanel gp){
+        super(gp);
         name = "Warp Core Regulator";
-        try{
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/warp_core_regulator.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        down1 = setup("/objects/warp_core_regulator", gp.tileSize, gp.tileSize);
     }
 }
+
+

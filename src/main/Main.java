@@ -8,7 +8,7 @@ public class Main {
 
         JFrame window = new JFrame("Cosmic Revival");
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        window.setResizable(false);
+        window.setResizable(true);
 
 
         GamePanel gamePanel = new GamePanel();
@@ -22,12 +22,16 @@ public class Main {
         gamePanel.setupGame();
 
         gamePanel.startGameThread();
+        Runtime.Version version = Runtime.version();
+        System.out.println(version);
 
         // One of the most important aspects of a game is time
         // FPS - Frames per second
         // Need to start a game clock for this
 
     }
+
+
 
 
 }

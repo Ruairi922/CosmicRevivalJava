@@ -9,13 +9,19 @@ public class Sound {
     URL sonudURL[] = new URL[30];
 
     public Sound(){
-        sonudURL[0] = getClass().getResource("/sound/HaroldParanormalInstigatorTheme.wav");
+        sonudURL[0] = getClass().getResource("/sound/OutThere.wav");
         sonudURL[1] = getClass().getResource("/sound/powerup.wav");
-        sonudURL[2] = getClass().getResource("/sound/hitmonster.wav");
+        sonudURL[2] = getClass().getResource("/sound/punch.wav");
         sonudURL[3] = getClass().getResource("/sound/receivedamage.wav");
         sonudURL[4] = getClass().getResource("/sound/coin.wav");
         sonudURL[5] = getClass().getResource("/sound/doorOpening.wav");
         sonudURL[6] = getClass().getResource("/sound/blocked.wav");
+        sonudURL[7] = getClass().getResource("/sound/punch.wav");
+        sonudURL[8] = getClass().getResource("/sound/receivedamage.wav");
+        sonudURL[9] = getClass().getResource("/sound/punch.wav");
+        sonudURL[10] = getClass().getResource("/sound/levelup.wav");
+        sonudURL[11] = getClass().getResource("/sound/gameover.wav");
+
 
     }
 

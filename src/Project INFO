@@ -1,0 +1,49 @@
+Main Structure and Components
+
+_______________________________________________________________________________________________________________________________________________________________________________________
+GamePanel Class:
+
+This class serves as the central game engine. It extends JPanel and implements Runnable for threading, which allows it to manage the game loop, rendering, and game state updates.
+It initializes various subsystems such as TileManager, KeyHandler, Sound, CollisionChecker, UI, EventHandler, and different Entity arrays like players, NPCs, and aliens.
+The game loop within the run method handles the timing for updates (movement, interactions) and rendering (drawing the game state to the screen).
+
+_______________________________________________________________________________________________________________________________________________________________________________________
+Entity Hierarchy:
+
+The Entity class is a base class for all movable and interactive elements within the game (players, NPCs, aliens). It handles common attributes like position, sprite images, movement direction, collision areas, and basic actions.
+Specific entities like Player, Alien, NPC_ARIA, and Crewmate extend the Entity class to implement character-specific behaviors and interactions.
+
+
+_______________________________________________________________________________________________________________________________________________________________________________________
+Support Classes:
+
+KeyHandler: Manages keyboard input for controlling the player and navigating game menus.
+Sound: Manages sound effects and background music using Java's AudioSystem.
+CollisionChecker: Checks for collisions between entities and between entities and the map, handling movement restrictions and interactions.
+UI: Manages drawing the user interface, including game states like play, pause, and menu screens.
+EventHandler: Manages specific game events triggered by player location or actions.
+ImageLoader: Loads images from resources, which are then used throughout the game for drawing sprites.
+
+
+_______________________________________________________________________________________________________________________________________________________________________________________
+Utility and Object Classes:
+
+UtilityTool: Provides utility functions, such as scaling images to fit the game's resolution.
+AssetSetter: Initializes game objects within the game world, placing entities and interactive objects in specific positions.
+Objects like OBJ_Door and OBJ_Engine are defined to interact with the player, representing doors that can be opened with keys or objectives to be completed.
+
+
+_______________________________________________________________________________________________________________________________________________________________________________________
+Design and Implementation Highlights
+Multithreading: Uses a separate thread to manage game logic and rendering cycles, ensuring smooth gameplay without freezing the UI.
+State Management: The game uses an integer-based state system to manage different screens and interactions (e.g., title, playing, paused).
+Modular Design: Different aspects of the game are handled by specialized classes, adhering to the principle of single responsibility and making the code more manageable.
+Event-Driven Interactions: Interaction with game elements like NPCs and doors is driven by player actions and collisions, making the game dynamic and interactive.
+
+
+
+_______________________________________________________________________________________________________________________________________________________________________________________
+Areas for Enhancement
+Separation of Concerns: Further refactoring could be done to separate game logic more distinctly from rendering code.
+Data-Driven Design: Moving configurations like entity positions or attributes into external files could make the game more flexible and easier to adjust without changing the code.
+Performance Optimization: Profiling and optimizing areas like collision detection and event handling could enhance performance, especially for larger maps or more complex scenes.
