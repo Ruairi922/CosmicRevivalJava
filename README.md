@@ -1,13 +1,13 @@
 # Cosmic Revival
 
 **Cosmic Revival** is a thrilling 2D action game developed in Java, using Swing for the interface and Graphics 2D for rendering.
-The game features a spaceship overrun by aliens where the player must navigate through levels, engage in intense battles, 
-and scavenge for essential components to survive and bring the crew safely back to Earth.
+The game features a spaceship overrun by aliens where the player must engage in intense battles, 
+and scavenge for essential components to fix the spacecraft, survive and bring the crew safely back to Earth.
 
 # Features
 
 - **Rich 2D Graphics**: Built using Java's Swing and Graphics 2D to provide an immersive visual experience.
-- **Engaging Gameplay Mechanics**: Includes interactions with various in-game objects, combat with enemies, and strategic puzzles to enhance the gaming experience.
+- **Engaging Gameplay Mechanics**: Includes interactions with various in-game objects, combat with enemies, and simpele AI implementation.
 - **Dynamic Sound Effects**: Integrates detailed sound effects to enrich the gameplay atmosphere.
 
 
