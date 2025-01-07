@@ -24,10 +24,8 @@ To set up Cosmic Revival on your machine, follow these steps:
 
 1. Clone the GitHub repository:
    ```bash
-   git clone https://github.com/yourgithubusername/CosmicRevival.git
+   git clone https://github.com/Ruairi922/CosmicRevivalJava.git
    
-Replace yourgithubusername with your actual GitHub username and navigate to the game directory.
-
 This will start the game, and you can begin playing immediately after the main window opens.
 
 
