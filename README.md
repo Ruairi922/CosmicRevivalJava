@@ -10,32 +10,6 @@ and scavenge for essential components to fix the spacecraft, survive and bring t
 - **Engaging Gameplay Mechanics**: Includes interactions with various in-game objects, combat with enemies, and simpele AI implementation.
 - **Dynamic Sound Effects**: Integrates detailed sound effects to enrich the gameplay atmosphere.
 
-
-# Getting Started
-# Prerequisites
-
-Before you can run Cosmic Revival, make sure you have the following installed:
-- Java Development Kit (JDK), at least version 11. [Download JDK](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
-- 
-
-# Installation
-
-To set up Cosmic Revival on your machine, follow these steps:
-
-1. Clone the GitHub repository:
-   ```bash
-   git clone https://github.com/Ruairi922/CosmicRevivalJava.git
-   
-This will start the game, and you can begin playing immediately after the main window opens.
-
-
-# Controls
-* Movement: Use the arrow keys or W, A, S, D to move your character within the game.
-* Interact: Press Enter to interact with objects and NPCs.
-* Pause Game: Press P to pause and resume the game.
-* Access Character Stats: Press C to view character statistics and inventory.
-  
-
 # License
 Distributed under the Apache License 2.0. See LICENSE for more information.
 
